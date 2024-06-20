@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
-import './App.css'
 
 function App({userName, age, image}) {
   return (
     <>
       <div className="relative h-[400px] w-[300px] rounded-md my-5 flex flex-row bg-white">
         <img
-          src={image}
+          src={image || "./src/assets/profilePic.jpg"}
           alt="AirMax Pro"
           className="z-0 h-full w-full rounded-md object-cover"
         />
@@ -15,7 +14,7 @@ function App({userName, age, image}) {
           <h1 className="text-lg font-semibold text-white">{userName || "Not Added"}</h1>
           <p className="mt-2 text-sm text-gray-300">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
-            debitis? its age is {age}
+            debitis? its age is {age || "Not Added"}
           </p>
           <button className="mt-2 inline-flex cursor-pointer items-center text-sm font-semibold text-white">
             View Profile →

@@ -2,21 +2,24 @@ import { useState } from "react";
 
 function App() {
 
-  let [counter, updatedCounter] = useState(0)
+  let [counter, setCounter] = useState(0)
 
-  function funcIncrement(){
+  function funcIncrement() {
     counter++;
+
     if(counter>10){
       return counter = 10 & alert("you exceeded its limit");
     }
-    updatedCounter(counter)
+    setCounter(counter)
   }
-  function funcDecrement(){
+
+  function funcDecrement() {
     counter--;
+
     if(counter<0){
       return counter = 0;
     }
-    updatedCounter(counter)
+    setCounter(counter)
   }
 
   return (
