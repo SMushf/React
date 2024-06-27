@@ -11,14 +11,17 @@ function App() {
   const [to, setTo] = useState("inr")
   const [convertedAmount, setConvertedAmount] = useState()
 
+// Get Data from custom hook useCurrencyInfo functionality
   const currencyInfo = useCurrencyInfo(from)
   const options = Object.keys(currencyInfo)
 
+// Swap button functionality
   const swap = () => {
     setFrom(to)
     setTo(from)
   }
 
+// Convert button functionality
   const convert = () => {
     setConvertedAmount(amount * currencyInfo[to])
   }
@@ -31,17 +34,18 @@ function App() {
             convert()
           }}>
             <div className="w-full mb-1">
-              <Inputs label="From" amount={amount} selectCurrency={from} currencyOptions={options} onCurrencyChange={(currency) => {setFrom(currency)}} onAmountChange={(amount) => setAmount(amount)}/>
+              <Inputs label="From" amount={amount} selectCurrency={from} currencyOptions={options} onCurrencyChange={(currency) => {setFrom(currency)}} onAmountChange={(amount) => setAmount(amount)} placerHolder="Enter Amount"/>
             </div>
-            <div className="relative w-full h-0.5">
-              <button type="button" className="absolute left-64 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-2 py-0.5" onClick={swap}>
-                swap
+            <div className="relative w-full h-9">
+              <button type="button" className="absolute left-64 top-1 border-none
+               rounded-lg bg-blue-600 text-white px-5 py-0.5 active:bg-purple-700" onClick={swap}>
+                swap ⇅
               </button>
             </div>
             <div className="w-full mt-1 mb-4">
               <Inputs label="To" amount={convertedAmount} currencyOptions={options} onCurrencyChange={(currency) => setTo(currency)} selectCurrency={to} amountDisable/>
             </div>
-            <button type="submit" className="w-full bg-blue-600 text-white px-4 py-3 rounded-xl" onClick={convert}>
+            <button type="submit" className="w-full bg-blue-600 text-white px-4 py-3 rounded-xl hover:bg-blue-700 hover:drop-shadow-md active:bg-purple-700" onClick={convert}>
               Convert {from.toUpperCase()} to {to.toUpperCase()}
             </button>
           </form>
